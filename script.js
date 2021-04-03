@@ -1,5 +1,5 @@
-// Checking if the page is not a google search results page
-const canRun = !window.location.href.includes('search');
+// Checking if the page is google search but not a google search results page
+const canRun = !window.location.href.includes('search') && window.location.href.includes('www.google.com');
 
 const stackSearch = () => {
     const searchValue = document.querySelector('[title="Search"]').value;
@@ -24,18 +24,30 @@ document.addEventListener('click', function (event) {
     stackSearch();
 }, false);
 
-
 // This runs if this is the correct page
 if (canRun) {
     // Finding each "I'm feeling lucky" Button
     var inputs = document.querySelectorAll('input[name="btnI"]');
     for (i = 0; i < inputs.length; i++) {
-        // Creating the new stack overflow button
-        const newButton = document.createElement("button");
-        newButton.innerHTML = "Stack Overflow";
-        newButton.classList.add('Stack-Overflow-Button');
-        newButton.onclick = (() => stackSearch());
-        // replacing the feeling lucky button
-        inputs[i].replaceWith(newButton);
+        // This is the main home screen Button that is going to be animated
+        if ( i == 1 ) {
+            // Creating our animated button so there is no jump on load
+            const ButtonAnimated = document.createElement("div");
+            ButtonAnimated.classList.add('Button-animation')
+            ButtonAnimated.innerHTML = `
+                <button class="Google-Button Button">I'm Feeling Lucky</button>
+                <button onclick="stackSearch()" class="Stack-Overflow-Button Button">Stack Overflow</button>
+            `
+            // replacing the feeling lucky button
+            inputs[i].replaceWith(ButtonAnimated);
+        } else {
+            // Creating the new stack overflow button
+            const newButton = document.createElement("button");
+            newButton.innerHTML = "Stack Overflow";
+            newButton.classList.add('Stack-Overflow-Button', 'Button');
+            newButton.onclick = (() => stackSearch());
+            // replacing the feeling lucky button
+            inputs[i].replaceWith(newButton);
+        }
     }
 }

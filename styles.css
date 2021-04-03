@@ -1,7 +1,27 @@
 .Stack-Overflow-Button {
     background-color: #ED7A1B;
-    border: 1px solid #dadce0;
     color: white;
+}
+
+.Stack-Overflow-Button:hover {
+    border: 1px solid #cc6714;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+}
+
+.Google-button {
+    background-color: #f8f9fa;
+    color: #3c4043;
+}
+
+.Google-button:hover {
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    color: #202124;
+}
+
+.Button {
+    border: 1px solid #f8f9fa;
     border-radius: 4px;
     font-family: arial,sans-serif;
     font-size: 14px;
@@ -15,7 +35,7 @@
     user-select: none;
 }
 
-.Stack-Overflow-Button:hover {
-    border: 1px solid #cc6714;
-    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+.Button-animation {
+    overflow: hidden;
+    transition-duration: 0.4s;
 }

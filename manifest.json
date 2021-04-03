@@ -5,12 +5,12 @@
     "version": "0.1",
     "description": "Skip the middleman",
     "permissions": [
-      "activeTab",
+      "tabs",
       "scripting"
     ],
     "content_scripts": [
         {
-          "matches": ["https://www.google.com/*"],
+          "matches": ["<all_urls>"],
           "js": ["script.js"],
           "css": ["styles.css"]
         }
