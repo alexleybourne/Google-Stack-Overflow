@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+   
+    "name": "Google Stack Overflow",
+    "version": "1.0.0",
+    "description": "Skip the middleman",
+   
+    "content_scripts": [{
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "matches": ["<all_urls>"]
+    }],
+    "icons": {
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    }
+   
+}
