@@ -7,24 +7,30 @@ const stackSearch = () => {
     console.log("stackSearch has been summoned");
     const searchValue = document.querySelector('[title="Search"]').value;
     console.log('Input Value:', searchValue);
-    // window.location.href = `https://stackoverflow.com/search?q=${searchVal}`;
+    const formattedValue = searchValue.replace(/\s/g, '+');
+    console.log('Formatted Value:', formattedValue);
+    if (formattedValue.length) {
+        window.location.href = `https://stackoverflow.com/search?q=${formattedValue}`;
+    }
 }
 
 document.addEventListener('click', function (event) {
     // Don't want it running on google search / result pages
     if (!canRun) return;
 
-    // if (!event.target.matches('.Stack-Overflow-Button')) return
+    // If we have not clicked on the stack overflow button we want the page 
+    // to behave the same as normal
+    if (!event.target.matches('.Stack-Overflow-Button')) return
 
-	// Don't follow the link
+	// Prevent default click action that google does ( searches )
 	event.preventDefault();
 
-	// Log the clicked element in the console
-	console.log(event.target);
-    console.log(event.target.value)
-
+    // Now we run our search Function
+    stackSearch();
 }, false);
 
+
+// This runs if this is the correct page
 if (canRun) {
     const luckyButton = document.getElementsByClassName('RNmpXc')[1]
     const newButton = document.createElement("button");

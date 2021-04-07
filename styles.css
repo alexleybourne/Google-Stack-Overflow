@@ -1,7 +1,7 @@
 .Stack-Overflow-Button {
     background-color: #ED7A1B;
+    border: 1px solid #dadce0;
     color: white;
-    border: 1px solid #f8f9fa;
     border-radius: 4px;
     font-family: arial,sans-serif;
     font-size: 14px;
@@ -13,4 +13,9 @@
     text-align: center;
     cursor: pointer;
     user-select: none;
+}
+
+.Stack-Overflow-Button:hover {
+    border: 1px solid #cc6714;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
 }
