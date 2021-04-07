@@ -1,20 +1,24 @@
 {
-    "manifest_version": 2,
-   
     "name": "Google Stack Overflow",
-    "version": "1.0.0",
+    "action": {},
+    "manifest_version": 3,
+    "version": "0.1",
     "description": "Skip the middleman",
-   
-    "content_scripts": [{
-      "css": ["styles.css"],
-      "js": ["content.js"],
-      "matches": ["<all_urls>"]
-    }],
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "content_scripts": [
+        {
+          "matches": ["https://www.google.com/*"],
+          "js": ["script.js"],
+          "css": ["styles.css"]
+        }
+    ],
     "icons": {
         "16": "images/icon16.png",
         "32": "images/icon32.png",
         "48": "images/icon48.png",
         "128": "images/icon128.png"
     }
-   
 }
