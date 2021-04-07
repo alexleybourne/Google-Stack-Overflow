@@ -1,15 +1,13 @@
-// Checking if the page is a google search results page
-const canRun = !window.location.href.includes('search')
-console.log('CAN RUN:', canRun);
-console.log('LOCATION:', window.location.href)
+// Checking if the page is not a google search results page
+const canRun = !window.location.href.includes('search');
 
 const stackSearch = () => {
-    console.log("stackSearch has been summoned");
     const searchValue = document.querySelector('[title="Search"]').value;
-    console.log('Input Value:', searchValue);
-    const formattedValue = searchValue.replace(/\s/g, '+');
-    console.log('Formatted Value:', formattedValue);
-    if (formattedValue.length) {
+    // If the value is not blank it continues
+    if (searchValue.length) {
+        // Replaces spaces in the query with pluses to work in url query
+        const formattedValue = searchValue.replace(/\s/g, '+');
+        // Sends the new url to the search bar and visits it
         window.location.href = `https://stackoverflow.com/search?q=${formattedValue}`;
     }
 }
@@ -17,14 +15,11 @@ const stackSearch = () => {
 document.addEventListener('click', function (event) {
     // Don't want it running on google search / result pages
     if (!canRun) return;
-
     // If we have not clicked on the stack overflow button we want the page 
     // to behave the same as normal
     if (!event.target.matches('.Stack-Overflow-Button')) return
-
 	// Prevent default click action that google does ( searches )
 	event.preventDefault();
-
     // Now we run our search Function
     stackSearch();
 }, false);
@@ -32,13 +27,15 @@ document.addEventListener('click', function (event) {
 
 // This runs if this is the correct page
 if (canRun) {
-    const luckyButton = document.getElementsByClassName('RNmpXc')[1]
-    const newButton = document.createElement("button");
-    newButton.innerHTML = "Stack Overflow";
-    newButton.classList.add('Stack-Overflow-Button');
-    newButton.onclick = (() => stackSearch());
-    console.log('New Button vvvvv');
-    console.log(newButton);
-    luckyButton.replaceWith(newButton);
+    // Finding each "I'm feeling lucky" Button
+    var inputs = document.querySelectorAll('input[name="btnI"]');
+    for (i = 0; i < inputs.length; i++) {
+        // Creating the new stack overflow button
+        const newButton = document.createElement("button");
+        newButton.innerHTML = "Stack Overflow";
+        newButton.classList.add('Stack-Overflow-Button');
+        newButton.onclick = (() => stackSearch());
+        // replacing the feeling lucky button
+        inputs[i].replaceWith(newButton);
+    }
 }
-
