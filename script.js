@@ -1,5 +1,6 @@
 // Checking if the page is google search but not a google search results page
-const canRun = !window.location.href.includes('search') && window.location.href.includes('www.google.com');
+const includesGoogle = window.location.href.includes('www.google.com');
+const canRun = !window.location.href.includes('search') && includesGoogle;
 
 const getSearchValue = () => {
     const searchValue = document.querySelector('[title="Search"]').value;
@@ -36,8 +37,9 @@ document.addEventListener('click', (e) => {
 
 
 document.addEventListener('keydown', (e) => {
-    // Don't want it running on google search / result pages
-    if (!canRun) return;
+    // The search and results page both use the same input title
+    // This code can run on both (⌐■_■)
+    if (!includesGoogle) return;
     // Gets the search value, checks it has a value and checks for the "/s" command
     const search = getSearchValue();
     const stackSearch = search?.includes('/s+');
