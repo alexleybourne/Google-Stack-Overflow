@@ -1,3 +1,9 @@
+.Flex-Center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .Stack-Overflow-Button {
     background-color: #ED7A1B;
     color: white;
@@ -8,12 +14,12 @@
     box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
 }
 
-.Google-button {
+.Google-Button {
     background-color: #f8f9fa;
     color: #3c4043;
 }
 
-.Google-button:hover {
+.Google-Button:hover {
     box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
     background-color: #f8f9fa;
     border: 1px solid #dadce0;
@@ -35,7 +41,27 @@
     user-select: none;
 }
 
-.Button-animation {
+.Button-Animation {
+    display: flex;
+    flex-direction: column;
+    max-width: 152px;
+    max-height: 38px;
     overflow: hidden;
+}
+
+.Button-Container {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-10px);
     transition-duration: 0.4s;
+    animation-name: SlideIn;
+    animation-duration: 0.2s;
+    animation-delay: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes SlideIn {
+    from {transform: translateY(-10px);}
+    to {transform: translateY(-68px);}
 }

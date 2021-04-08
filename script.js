@@ -33,10 +33,12 @@ if (canRun) {
         if ( i == 1 ) {
             // Creating our animated button so there is no jump on load
             const ButtonAnimated = document.createElement("div");
-            ButtonAnimated.classList.add('Button-animation')
+            ButtonAnimated.classList.add('Button-Animation')
             ButtonAnimated.innerHTML = `
-                <button class="Google-Button Button">I'm Feeling Lucky</button>
-                <button onclick="stackSearch()" class="Stack-Overflow-Button Button">Stack Overflow</button>
+                <div class="Button-Container">
+                    <button class="Google-Button Button">I'm Feeling Lucky</button>
+                    <button onclick="stackSearch()" class="Stack-Overflow-Button Button">Stack Overflow</button>
+                </div>
             `
             // replacing the feeling lucky button
             inputs[i].replaceWith(ButtonAnimated);
