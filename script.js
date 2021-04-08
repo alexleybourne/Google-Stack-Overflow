@@ -36,12 +36,14 @@ document.addEventListener('click', (e) => {
 
 
 document.addEventListener('keydown', (e) => {
-    // Gets the search value and checks for the "/s" command
+    // Don't want it running on google search / result pages
+    if (!canRun) return;
+    // Gets the search value, checks it has a value and checks for the "/s" command
     const search = getSearchValue();
-    const stackSearch = search.includes('/s+');
-    document.querySelector('[title="Search"]').value;
-    // Checking it can run and it is the enter key ( 13 = enter key )
-    if (e.code == "Enter" && canRun && stackSearch) {
+    const stackSearch = search?.includes('/s+');
+    document.querySelector('[title="Search"]').style.color = stackSearch ? "#ED7A1B" : "black";
+    // Checking it can run and it is the enter key
+    if (e.code == "Enter" && stackSearch) {
         e.preventDefault();
         // removes "/s+" from the start of our query
         const searchCleaned = search.slice(3);
