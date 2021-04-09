@@ -36,19 +36,19 @@ document.addEventListener('click', (e) => {
 }, false);
 
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keyup', (e) => {
     // The search and results page both use the same input title
     // This code can run on both (⌐■_■)
     if (!includesGoogle) return;
     // Gets the search value, checks it has a value and checks for the "/s" command
     const search = getSearchValue();
-    const stackSearch = search?.includes('/s+');
+    const stackSearch = search?.includes('/s');
     document.querySelector('[title="Search"]').style.color = stackSearch ? "#ED7A1B" : "black";
     // Checking it can run and it is the enter key
     if (e.code == "Enter" && stackSearch) {
         e.preventDefault();
         // removes "/s+" from the start of our query
-        const searchCleaned = search.slice(3);
+        const searchCleaned = search.trim().replace('/s','');
         console.log('STACK SEARCH!', searchCleaned);
         window.location.href = `https://stackoverflow.com/search?q=${searchCleaned}`;
     }
