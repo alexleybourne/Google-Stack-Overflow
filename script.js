@@ -1,6 +1,9 @@
 // Checking if the page is google search but not a google search results page
-const includesGoogle = window.location.href.includes('www.google.com');
-const canRun = !window.location.href.includes('search') && includesGoogle;
+const URL = window.location.href;
+const includesGoogle = URL.includes('www.google.com');
+const canRun = !URL.includes('search') && includesGoogle;
+
+const orange = "#ED7A1B";
 
 const getSearchValue = () => {
     const searchValue = document.querySelector('[title="Search"]').value;
@@ -13,6 +16,17 @@ const getSearchValue = () => {
     }
 }
 
+// Edits the suggestions google gives so they can send you to stack overflow too
+const setToOrange = (selector, stackSearch) => {
+    document.querySelectorAll(selector).forEach(function (item){
+        if (stackSearch) { 
+            item.classList.add('Orange-Text'); 
+        } else {
+            item.classList.remove('Orange-Text'); 
+        }
+    });
+}
+
 const stackSearch = () => {
     // gets the input value from the function
     const search = getSearchValue();
@@ -23,9 +37,15 @@ const stackSearch = () => {
     }
 }
 
+window.onbeforeunload = function(e){
+    if (!includesGoogle) return;
+    return e.preventDefault();
+    // return stackSearch();
+};
+
 document.addEventListener('click', (e) => {
     // Don't want it running on google search / result pages
-    if (!canRun) return;
+    if (!includesGoogle) return;
     // If we have not clicked on the stack overflow button we want the page 
     // to behave the same as normal
     if (!e.target.matches('.Stack-Overflow-Button')) return
@@ -43,7 +63,10 @@ document.addEventListener('keyup', (e) => {
     // Gets the search value, checks it has a value and checks for the "/s" command
     const search = getSearchValue();
     const stackSearch = search?.includes('/s');
-    document.querySelector('[title="Search"]').style.color = stackSearch ? "#ED7A1B" : "black";
+    // Search Field text
+    setToOrange('[title="Search"]', stackSearch);
+    // Suggestion text
+    setToOrange('[role="option"]', stackSearch);
     // Checking it can run and it is the enter key
     if (e.code == "Enter" && stackSearch) {
         e.preventDefault();

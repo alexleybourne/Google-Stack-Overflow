@@ -1,3 +1,18 @@
+/* Variable to easily change the main orange colour */
+:root {
+    --orange: #ED7A1B;
+}
+
+.Orange-Text {
+    color: var(--orange) !important;
+}
+
+/* Styling for the auto suggestions */
+.Orange-Text > div > span {
+    color: var(--orange) !important;
+    pointer-events: none;
+}
+
 .Flex-Center {
     display: flex;
     align-items: center;
@@ -5,7 +20,7 @@
 }
 
 .Stack-Overflow-Button {
-    background-color: #ED7A1B;
+    background-color: var(--orange);
     color: white;
 }
 
