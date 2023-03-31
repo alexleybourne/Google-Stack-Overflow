@@ -17,13 +17,6 @@ I have commented all the code to make it nice and easy to understand / navigate 
 - Use `/s` in your searches to search stack overflow instantly
 - You can also use the new shiny `Stack Overflow` button
 
-## Coming Soon
-
-- Ability to use autocomplete suggestions
-- Popup and settings from extension icon
-- Shortcut to quickly search from anywhere
-- Idk maybe some pretty animations for no reason
-
 ## How to install
 
 1. go to: `chrome://extensions/` in your browser
